@@ -1,0 +1,48 @@
+<button (click)="option(1)" (tap)="option(1)">option 1</button>
+<button (click)="option(2)" (tap)="option(2)">option 2</button>
+<button (click)="option(3)" (tap)="option(3)">option 3</button>
+
+<div *ngIf="option1===true">
+	<div *ngFor="let task of tasklist" [class]=" expandedTask===task?'option1-container-expanded':'option1-container-collapsed'" (click)="expandedTask = task">
+		{{task.name}}
+		<div class="expanded" (click)="expandedTask = ''" *ngIf="expandedTask === task">
+			{{task.description}}
+      <div class="right-arrow" *ngIf="expandedTask===task" (click)="option1clicked(task)">
+        </div>
+		</div>
+	</div>
+</div>
+<div *ngIf="option2">
+	<div *ngFor="let task of tasklist" class="option2-container" (click)="option2clicked(task)">
+		{{task.name}}
+	</div>
+</div>
+<div *ngIf="option3">
+	<div *ngFor="let task of tasklist" class="option3-container" (click)="option3clicked(task)">
+		{{task.name}}
+	</div>
+</div>
+
+<div *ngIf="showoption1Details">
+	showing
+	{{currentTask.name}}
+	<div *ngFor="let subtask of currentTask.subtasks" class="option1-details-container">
+		{{subtask.name}}
+	</div>
+</div>
+
+
+<div *ngIf="showoption2Details" class="option2-details-container">
+	{{currentTask.name}}
+	<div *ngFor="let subtask of currentTask.subtasks" class="option2-details-row">
+		{{subtask.name}}
+	</div>
+</div>
+
+
+<div *ngIf="showoption3Details">
+	{{currentTask.name}}
+	<div *ngFor="let subtask of currentTask.subtasks" class="option3-details-container">
+		{{subtask.name}}
+	</div>
+</div>
